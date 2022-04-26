@@ -90,14 +90,39 @@
 
 li {
     width: 600px;
+    margin: 0 auto;
 }
 
 ul .tela3_2 {
     display: flex;
     justify-content: center;
+   
 }
 
 ul .tela3_3 {
     display: flex;
     justify-content: center;
+}
+
+.inputs{
+    height: auto;
+}
+
+@media (max-width: 1100px) {
+    .tela3_2{
+        width: 100%;
+    }
+
+    .tela3_3{
+        width: 100%;
+    }
+
+    li{
+        width: 100%;
+    }
+
+    .tela3_4{
+        width: 100%;
+        margin: 0 18px;
+    }
 }

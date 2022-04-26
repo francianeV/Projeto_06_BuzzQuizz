@@ -2,6 +2,7 @@ let listaQuizes = [];
 let quizzSelecionado = {};
 let respostasCorretas = 0;
 let perguntasRespondidas = 0;
+let nivel = 0;
 const TEMPO2S = 2 * 1000;
 
 listarQuiz()
@@ -187,6 +188,54 @@ function criarQuizz() {
     const telaCriar = document.querySelector(".montar-quizz");
     telaCriar.classList.remove("oculto");
 }
+
+function finalizarQuizz() {
+    let niveis = quizzSelecionado.levels;
+    let nivelFinal = 0;
+    console.log(nivelFinal);
+  
+    // while (Math.round(nivel) < niveis[i].minValue)
+  
+    for (let i = 0; i < niveis.length; i++) {
+      if (
+        niveis[i].minValue <= Math.round(nivel) &&
+        niveis[i].minValue >= nivelFinal
+      ) {
+        nivelFinal = niveis[i].minValue;
+      }
+    }
+    console.log(nivelFinal);
+  
+    for (let j = 0; j < niveis.length; j++) {
+      if (niveis[j].minValue === nivelFinal) {
+        document.querySelector(".fim-do-quiz").innerHTML = `  
+                  <div class="finalizar-titulo">
+                      <h3>${niveis[j].title}</h3>
+                  </div>
+                  <div class="quiz-nivel">                         
+                      <img src="${niveis[j].image}" alt="">
+                      <p class="texto-nivel">${niveis[j].text}</p>                                  
+                  </div>                    
+                  `;
+  
+        document.querySelector(".botoes-fim").innerHTML = `
+                  <div class="quiz-reiniciar" onclick="reiniciarQuiz()">Reiniciar Quizz</div>   
+                  <div class="quiz-voltar" onclick="voltarHome()">Voltar pra home</div> 
+              `;
+        break;
+      }
+    }
+    let quizzPage = document.querySelector(".pagina-quiz");
+    scrollProxima(quizzPage.lastElementChild);
+    console.log(nivelFinal);
+  }
+
+function reiniciarQuiz(){
+    respostasCorretas = 0;
+    perguntasRespondidas = 0;
+    chamarQuiz();
+}
+
 
 
 

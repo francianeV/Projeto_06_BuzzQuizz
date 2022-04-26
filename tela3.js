@@ -357,6 +357,7 @@ function renderizaTela3_3 () {
         </li>
         `;
     }
+    
     ulTela3_3.innerHTML += `
     <li>
     <div class="botoesTela3_x" onclick="validaNiveis()">Finalizar Quiz</div>
