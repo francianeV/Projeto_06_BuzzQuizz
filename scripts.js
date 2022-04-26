@@ -8,7 +8,7 @@ const TEMPO2S = 2 * 1000;
 listarQuiz()
 
 function listarQuiz() {
-    const promessa = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes"); /*mudar para v6 depois*/
+    const promessa = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes"); 
     promessa.then(carregarQuiz);
 }
 
@@ -26,7 +26,6 @@ function renderizarQuiz() {
         <li class="quizz" onclick="acessarQuiz(this)">
             <img src="${listaQuizes[i].image}"> 
             <p class="id">${listaQuizes[i].title}</p>
-            <div class="quizz-id">${listaQuizes[i].id}</div>
         </li>
         `;
     }
@@ -84,7 +83,6 @@ function chamarQuiz() {
         for (let k = 0; k < respostasDadas.length; k++) {
             perguntasEmbaralhadas.push(respostasDadas[k]);
         }
-        console.log(perguntasEmbaralhadas);
 
         for (let k = 0; k < perguntasEmbaralhadas.length; k++) {
             let id = `pergunta${i}`;
@@ -118,7 +116,6 @@ function escolherResposta(elemento) {
             console.log("resposta errada");
             perguntasRespondidas++;
         }
-        console.log(valor);
 
         perguntaRespondida.classList.add("respondido");
         let perguntaCompleta = perguntaRespondida.parentNode;
@@ -127,24 +124,21 @@ function escolherResposta(elemento) {
             ".pergunta-resposta"
         );
         for (let i = 0; i < todasRespostas.length; i++) {
-            let transparente = todasRespostas[i];
+            let escondido = todasRespostas[i];
             if (
-                transparente.classList.contains("false") &&
-                transparente !== elemento
+                escondido.classList.contains("false") &&
+                escondido !== elemento
             ) {
-                transparente.firstElementChild.classList.remove("oculto");
+                escondido.firstElementChild.classList.remove("oculto");
             } else if (
-                transparente.classList.contains("true") &&
-                transparente !== elemento
+                escondido.classList.contains("true") &&
+                escondido !== elemento
             ) {
-                transparente.firstElementChild.classList.remove("oculto");
+                escondido.firstElementChild.classList.remove("oculto");
             }
         }
 
         if (perguntasRespondidas === perguntas.length) {
-            console.log("acabou o quizz");
-            console.log(`respostasCorretas ${respostasCorretas}`);
-            console.log(`perguntasRespondidas ${perguntasRespondidas}`);
             nivel = (respostasCorretas / perguntasRespondidas) * 100;
             console.log(`nivel ${nivel}`);
             document.querySelector(".pagina-quiz").innerHTML += `
@@ -152,8 +146,6 @@ function escolherResposta(elemento) {
               `;
             finalizarQuizz();
         } else {
-            console.log(todasRespostas);
-            console.log(todasRespostas.length);
             scrollProxima(perguntaCompleta.nextElementSibling);
         }
     }
@@ -167,18 +159,12 @@ function embaralha(array) {
 }
 
 function scrollProxima(elemento) {
-    setTimeout(() => {
-        elemento.scrollIntoView({ block: "center", behavior: "smooth" });
-    }, TEMPO2S);
+    setTimeout(() => { elemento.scrollIntoView({ block: "center", behavior: "smooth" });}, TEMPO2S);
 }
 
 function scrollParaTopo() {
     elemento = document.querySelector(".topo-quiz");
-    console.log(elemento);
-
-    setTimeout(() => {
-        elemento.scrollIntoView({ block: "center", behavior: "smooth" });
-    }, 500);
+    setTimeout(() => {elemento.scrollIntoView({ block: "center", behavior: "smooth" });}, 500);
 }
 
 function criarQuizz() {
@@ -192,10 +178,7 @@ function criarQuizz() {
 function finalizarQuizz() {
     let niveis = quizzSelecionado.levels;
     let nivelFinal = 0;
-    console.log(nivelFinal);
-  
-    // while (Math.round(nivel) < niveis[i].minValue)
-  
+
     for (let i = 0; i < niveis.length; i++) {
       if (
         niveis[i].minValue <= Math.round(nivel) &&
@@ -227,10 +210,12 @@ function finalizarQuizz() {
     }
     let quizzPage = document.querySelector(".pagina-quiz");
     scrollProxima(quizzPage.lastElementChild);
-    console.log(nivelFinal);
+
   }
 
 function reiniciarQuiz(){
+    const tela2 = document.querySelector(".fim-do-quiz")
+    tela2.innerHTML = ''
     respostasCorretas = 0;
     perguntasRespondidas = 0;
     chamarQuiz();
