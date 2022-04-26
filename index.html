@@ -18,17 +18,21 @@
 <body>
 <header class="topo"><h1>BuzzQuizz</h1></header>
 
-<main class="conteudo"> 
-    <div class="criar-quizz">
-        <p>Você não criou nenhum quizz ainda :(</p>
-        <div class="botao-criar" onclick="criarQuizz()">Criar Quizz</div>
+<main class="conteudo">
+    <div class="conteudo-criarQuiz">
+        <div class="criar-quizz">
+            <p>Você não criou nenhum quizz ainda :(</p>
+            <div class="botao-criar" onclick="criarQuizz()">Criar Quizz</div>
+        </div>
     </div>
+
     <div class="listar-quizz">
-        <p>Todos os quizzes</p> 
+        <p>Todos os quizzes</p>
         <ul class="quizzes"> <!--Essa parte vai ser dinamica conforme vao tendo quizzes para listar-->
         </ul>
     </div>
 </main>
+
 
 <div class="montar-quizz oculto">
     <h3>Comece pelo começo</h3>
@@ -57,7 +61,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 <script src="scripts.js"></script>
 <script src="tela3.js"></script>
 

@@ -3,6 +3,8 @@ const tituloQuiz = []
 const urlImgQuiz = []
 //Armazenamento de Dados - tela 3.2
 const questionsQuiz = []
+const questionObj = []
+const answersObj = []
 //Armazenamento de Dados - tela 3.3
 const levelsQuiz = []
 
@@ -10,14 +12,14 @@ const levelsQuiz = []
 function prosseguirCriarPerguntas() {
     let contadorInvalidacao = 0
     const naoTemErro = 0
-    // if (!(validaTitulo())) {
-    //     alert("Título do quiz deve ter no mínimo 20 e no máximo 65 caracteres!")
-    //     contadorInvalidacao++
-    // }
-    // if (!(validaUrl())) {
-    //     alert("URL da Imagem deve ter formato de URL!")
-    //     contadorInvalidacao++
-    // }
+    if (!(validaTitulo())) {
+        alert("Título do quiz deve ter no mínimo 20 e no máximo 65 caracteres!")
+        contadorInvalidacao++
+    }
+    if (!(validaUrl())) {
+        alert("URL da Imagem deve ter formato de URL!")
+        contadorInvalidacao++
+    }
     if (!(validaQtdPerguntas())) {
         alert("Quantidade de perguntas do quiz deve ser no mínimo 3!")
         contadorInvalidacao++
@@ -65,8 +67,8 @@ function validaUrl() {
 function validaQtdPerguntas() {
     const limiteMinPerguntas = 3
     let valueQtdPerguntas = document.querySelector(".montar-quizz").querySelector(".num-perguntas").value
-    //if (Number(valueQtdPerguntas) >= limiteMinPerguntas)  {
-    if (Number(valueQtdPerguntas) >=1)  {
+    if (Number(valueQtdPerguntas) >= limiteMinPerguntas)  {
+    // if (Number(valueQtdPerguntas) >=1)  {
         return true
     }
     else {
@@ -143,56 +145,90 @@ function renderizaTela3_2 () {
 function validaPerguntas() {
     let contadorInvalidacao = 0
     const naoTemErro = 0
-    // if (!(validaTextoPergunta())) {
-    //     alert("O texto da pergunta não pode estar em branco e deve ter no mínimo 20 caracteres!")
-    //     contadorInvalidacao++
-    // }
-    // if (!(validaCorFundo())) {
-    //     alert("O formato da cor não é valido!")
-    //     contadorInvalidacao++
-    // }
-    // if (!(validaResposta())) {
-    //     alert("O texto da Resposta Correta e da Resposta Incorreta 1 não podem estar em branco!")
-    //     contadorInvalidacao++
-    // }
-    // if (!(validaUrlimgResposta())) {
-    //     alert("URL da Imagem deve ter formato de URL!")
-    //     contadorInvalidacao++
-    // }
+    if (!(validaTextoPergunta())) {
+        alert("O texto da pergunta não pode estar em branco e deve ter no mínimo 20 caracteres!")
+        contadorInvalidacao++
+    }
+    if (!(validaCorFundo())) {
+        alert("O formato da cor não é valido!")
+        contadorInvalidacao++
+    }
+    if (!(validaResposta())) {
+        alert("O texto da Resposta Correta e da Resposta Incorreta 1 não podem estar em branco!")
+        contadorInvalidacao++
+    }
+    if (!(validaUrlimgResposta())) {
+        alert("URL da Imagem deve ter formato de URL!")
+        contadorInvalidacao++
+    }
 
     //Cria a propriedade 'levels' do objeto QuizUsuario
-    const numRespostasIncorretasQuestion = 3 
+    //const numRespostasIncorretasQuestion = 3 
     const answers = []
     for (let i = 1; i <= Number(document.querySelector(".montar-quizz").querySelector(".num-perguntas").value); i ++) {
-        const answersI = []
-        let respostaCorretaI = {
+        const answers_i = []
+        let respostaCorreta_i = {
             text: ulTela3_2.querySelector(`.resposta-correta-P-${i}`).value,
             image: ulTela3_2.querySelector(`.url-imagem-correta-P-${i}`).value,
             isCorrectAnswer: true
         }
-        // answersI.push(respostaCorretaI)
-        // for (let j = 1; j <= numRespostasIncorretasQuestion; i++) {
-        //     let respostaIncorretaJ = {
-        //         text: ulTela3_2.querySelector(`.resposta-incorreta${j}-P-${i}`).value,
-        //         image: ulTela3_2.querySelector(`.url-imagem${j}-P-${i}`).value,
-        //         isCorrectAnswer: false
-        //     }
-        //     answersI.push(respostaIncorretaJ)
-        // }
-        answers.push(answersI)
+        answers_i.push(respostaCorreta_i)
 
+        let numRespostasIncorretasQuestion = 1
+        
+        numRespostasIncorretasQuestion = 1
+    
+        let valueRespostaIncorreta2 = ulTela3_2.querySelector(`.resposta-incorreta2-P-${i}`).value
+        let valueRespostaIncorreta3 = ulTela3_2.querySelector(`.resposta-incorreta3-P-${i}`).value
+        if (valueRespostaIncorreta2 !== '') {
+            numRespostasIncorretasQuestion++
+        }
+        if (valueRespostaIncorreta3 !== '') {
+            numRespostasIncorretasQuestion++
+        }
+
+        console.log(`numero respostas incorretas da pergunta ${i}:${numRespostasIncorretasQuestion}`)
+        for (let j = 1; j <= numRespostasIncorretasQuestion; j++) {
+            let respostaIncorreta_j = {
+                text: ulTela3_2.querySelector(`.resposta-incorreta${j}-P-${i}`).value,
+                image: ulTela3_2.querySelector(`.url-imagem${j}-P-${i}`).value,
+                isCorrectAnswer: false
+            }
+            answers_i.push(respostaIncorreta_j)
+        }
+        answers.push(answers_i)
+
+        // const question = {
+        //     title: ulTela3_2.querySelector(`.texto-pergunta-P-${i}`).value,
+        //     color: ulTela3_2.querySelector(`.cor-fundo-pergunta-P-${i}`).value,
+        //     answers: answers[0][i]
+        //     // answers: answers[i]
+        // }
+        // questionsQuiz.push(question)
+        // questionObj.push(question)
+        // console.log(`question:${question}`)
+        // console.log("answers[0] jason:" + JSON.stringify(answers[0]))
+        // console.log("answers[i] jason:" + JSON.stringify(answers[i]))
+    }
+    answersObj.push(answers)
+    // console.log('answerObj:'+answersObj)
+    // console.log('questionObj:'+questionObj)
+    // // console.log("answer1"+JSON.stringify(answers[0]))
+    // // console.log("answer2"+JSON.stringify(answers[1]))
+    // // console.log(`answers:${answers}`)
+    // // console.log('JSON.STRINGIFY answers:'+JSON.stringify(answers)) 
+    // console.log(`questionsQuiz:${questionsQuiz}`)
+
+    for (let i = 0; i < Number(document.querySelector(".montar-quizz").querySelector(".num-perguntas").value); i ++) {
         const question = {
-            title: ulTela3_2.querySelector(`.texto-pergunta-P-${i}`).value,
-            color: ulTela3_2.querySelector(`.cor-fundo-pergunta-P-${i}`).value,
-            answers: answers[i] 
+            title: ulTela3_2.querySelector(`.texto-pergunta-P-${i+1}`).value,
+            color: ulTela3_2.querySelector(`.cor-fundo-pergunta-P-${i+1}`).value,
+            answers: answersObj[0][i]
         }
         questionsQuiz.push(question)
     }
-    console.log(`answersI:${answers}`)
-    console.log(`answers:${answers}`)
-    console.log(questionsQuiz)
 
-    if (contadorInvalidacao === naoTemErro) {
+    if (contadorInvalidacao == naoTemErro) {
         acessaTela3_3()
     }
 }
@@ -271,6 +307,21 @@ function EhHexaDecimal(string) {
     else {
         return false 
     }
+}
+
+function contaRespostaIncorreta() {
+    contador = 1
+    for (let i = 1; i <= Number(document.querySelector(".montar-quizz").querySelector(".num-perguntas").value); i ++) {
+        let valueRespostaIncorreta2 = ulTela3_2.querySelector(`.resposta-incorreta2-P-${i}`).value
+        let valueRespostaIncorreta3 = ulTela3_2.querySelector(`.resposta-incorreta3-P-${i}`).value
+        if (valueRespostaIncorreta2 !== '') {
+            contador++
+        }
+        if (valueRespostaIncorreta3 !== '') {
+            contador++
+        }
+    }
+    return contador
 }
 
 //CHECK!
@@ -357,7 +408,6 @@ function renderizaTela3_3 () {
         </li>
         `;
     }
-    
     ulTela3_3.innerHTML += `
     <li>
     <div class="botoesTela3_x" onclick="validaNiveis()">Finalizar Quiz</div>
@@ -368,26 +418,26 @@ function renderizaTela3_3 () {
 function validaNiveis() {
     let contadorInvalidacao = 0
     const naoTemErro = 0
-    // if (!(validaTituloNivel())) {
-    //     alert("O título do Nível deve ter pelo menos 10 caracteres!")
-    //     contadorInvalidacao++
-    // }
-    // if (!(validaAcertoMin())) {
-    //     alert("A porcentagem mínima de acerto deve ser um número entre 0 e 100!")
-    //     contadorInvalidacao++
-    // }
-    // if (!(validaURLimgNivel())) {
-    //     alert("URL da Imagem deve ter formato de URL!")
-    //     contadorInvalidacao++
-    // }
-    // if (!(validaDescricaoNivel())) {
-    //     alert("A descrição do nível deve ter no mínimo 30 caracteres!")
-    //     contadorInvalidacao++
-    // }
-    // if (!(validaAcertoMinDeZero())) {
-    //     alert("A porcentagem mínima de acerto deve ser zero em pelo menos um nível!")
-    //     contadorInvalidacao++
-    // }
+    if (!(validaTituloNivel())) {
+        alert("O título do Nível deve ter pelo menos 10 caracteres!")
+        contadorInvalidacao++
+    }
+    if (!(validaAcertoMin())) {
+        alert("A porcentagem mínima de acerto deve ser um número entre 0 e 100!")
+        contadorInvalidacao++
+    }
+    if (!(validaURLimgNivel())) {
+        alert("URL da Imagem deve ter formato de URL!")
+        contadorInvalidacao++
+    }
+    if (!(validaDescricaoNivel())) {
+        alert("A descrição do nível deve ter no mínimo 30 caracteres!")
+        contadorInvalidacao++
+    }
+    if (!(validaAcertoMinDeZero())) {
+        alert("A porcentagem mínima de acerto deve ser zero em pelo menos um nível!")
+        contadorInvalidacao++
+    }
 
     //Cria a propriedade 'levels' do objeto QuizUsuario
     for (let i = 1; i <= Number(document.querySelector(".montar-quizz").querySelector(".niveis-quizz").value); i ++) {
@@ -548,25 +598,68 @@ function acessaTela3_4() {
 }
 
 function renderizaTela3_4 () {
+    let idQuiz = 0
+    const QuizUsuario = {
+        title: tituloQuiz[0],
+        image: urlImgQuiz[0],
+        questions: questionsQuiz,
+        levels: levelsQuiz
+    }    
+    const promessa = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes",QuizUsuario)
+    console.log(QuizUsuario.image)
     const ulTela3_4 = document.querySelector(".tela3_4")
     ulTela3_4.innerHTML += `
     <li>
         <h3 class="headersTela3">Seu quizz está pronto!</h3>
     
-    //adicionar imagem do quiz pegando do objeto QuizUsuário
+    <img class="imgTela3_4" src="${QuizUsuario.image}">
 
-    <div class="botoesTela3_x" onclick="acessarQuiz()">Acessar Quizz</div>
+    <div class="botoesTela3_x" onclick="acessarQuiz(this)">Acessar Quizz</div>
     <div class="voltarHome" onclick="voltarHome()">Voltar pra Home</div>
     </li>
     `
 }
+/*
+function acessarQuiz(element) {
+    document.querySelector(".conteudo").classList.add("oculto");
+    document.querySelector(".pagina-quiz").classList.remove("oculto");
+    let quizzID = element.querySelector(".botoesTela3_x").innerHTML;
+    console.log(quizzID);
+    let index = listaQuizes.findIndex((element) => element.title === quizzID);
+    console.log(index);
+    quizzSelecionado = listaQuizes[index];
+    console.log(quizzSelecionado);
 
+    chamarQuiz();
+
+}
+*/
 function voltarHome() {
     const ulTela3_4 = document.querySelector(".tela3_4")
     ulTela3_4.innerHTML = ''
     const home = document.querySelector(".conteudo");
     home.classList.remove("oculto");
     //adicionar função pra adicionar o quiz que acabou de ser criado na tela inicial como opção de escolha
+    const criarQuiz = document.querySelector(".conteudo")
+    criarQuiz.innerHTML = ''
+    criarQuiz.innerHTML += `    
+    <div class="conteudo-criarQuiz">
+        <div class="titulo-quizCriado">
+            <div class="seusQuizzes">Seus Quizzes</div>
+            <ion-icon name="add-circle" onclick="criarQuizz()"></ion-icon>
+        </div>
+        <div class="quizzCriado-Usuario">
+
+        </div>
+    </div>
+    <div class="listar-quizz">
+        <p>Todos os quizzes</p> 
+        <ul class="quizzes"> <!--Essa parte vai ser dinamica conforme vao tendo quizzes para listar-->
+        </ul>
+    </div>
+    `
+    listarQuiz()
+
 }
 
 
@@ -577,20 +670,28 @@ function voltarHome() {
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------------------- 
-function montaQuizUsuario() {
-    let idQuiz = 0
-    const QuizUsuario = {
-        id: idQuiz,
-        title: tituloQuiz[0],
-        image: urlImgQuiz[0],
-        questions: questionsQuiz,
-        levels: levelsQuiz
-    }    
-    console.log(QuizUsuario)
-}
+// function montaQuizUsuario() {
+//     let idQuiz = 0
+//     const QuizUsuario = {
+//         id: idQuiz,
+//         title: tituloQuiz[0],
+//         image: urlImgQuiz[0],
+//         questions: questionsQuiz,
+//         levels: levelsQuiz
+//     }    
+//     console.log(QuizUsuario)
+// }
 
 //criar função pra adicionar quiz que acabou de ser criado nesta linha
-
-
-
+// function mandaQuizAPI() {
+//     let idQuiz = 0
+//     const QuizUsuario = {
+//         id: idQuiz,
+//         title: tituloQuiz[0],
+//         image: urlImgQuiz[0],
+//         questions: questionsQuiz,
+//         levels: levelsQuiz
+//     }    
+//     const promessa = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes",QuizUsuario)
+// }
 

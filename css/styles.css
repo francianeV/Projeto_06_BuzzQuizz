@@ -96,6 +96,7 @@ body {
 .quizzes {
     display: flex;
     flex-wrap: wrap;
+    height: auto;
 }
 
 .quizz {
