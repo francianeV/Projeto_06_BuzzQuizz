@@ -220,7 +220,7 @@ function finalizarQuizz() {
   
         document.querySelector(".botoes-fim").innerHTML = `
                   <div class="quiz-reiniciar" onclick="reiniciarQuiz()">Reiniciar Quizz</div>   
-                  <div class="quiz-voltar" onclick="voltarHome()">Voltar pra home</div> 
+                  <div class="quiz-voltar" onclick="voltarTela()">Voltar pra home</div> 
               `;
         break;
       }
@@ -234,6 +234,10 @@ function reiniciarQuiz(){
     respostasCorretas = 0;
     perguntasRespondidas = 0;
     chamarQuiz();
+}
+
+function voltarTela(){
+    window.location.reload();
 }
 
 
