@@ -1,0 +1,103 @@
+.botoesTela3_x:hover{
+    cursor: pointer;
+}
+
+.botoesTela3_x {
+    width: 324px;
+    height: 54px;
+    background: #EC362D;
+    border-radius: 15px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF5F4;
+    margin: 0 auto;
+    margin-top: 23px;
+    margin-bottom: 20px;
+}
+
+.tela3_2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.inputs > h2 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    margin:0 18px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.conteiner {
+    width: 600px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+}
+
+.headersTela3 {
+    margin-top: 38px;
+    margin-bottom: 29px;
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+.tela3_3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.imgQuiz {
+    height: 266px;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.voltarHome:hover{
+    cursor: pointer;
+}
+
+.voltarHome {
+    width: 324px;
+    height: 54px;
+    border-radius: 15px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#818181;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+li {
+    width: 600px;
+}
+
+ul .tela3_2 {
+    display: flex;
+    justify-content: center;
+}
+
+ul .tela3_3 {
+    display: flex;
+    justify-content: center;
+}

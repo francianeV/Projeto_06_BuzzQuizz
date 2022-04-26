@@ -158,7 +158,7 @@ function escolherResposta(elemento) {
     }
 }
 
-function embaralha(array) { //mudar nome dessa função
+function embaralha(array) { 
     for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
@@ -179,49 +179,6 @@ function scrollParaTopo() {
         elemento.scrollIntoView({ block: "center", behavior: "smooth" });
     }, 500);
 }
-
-
-/*
-
-function acessarQuiz(element) {
-
-    //let idQuizz = element.querySelector(".quizz-id").innerHTML;
-    //console.log(idQuizz);
-  
-    const ocultar = document.querySelector(".conteudo");
-    ocultar.classList.add("oculto");
-
-    const irQuiz = document.querySelector(".pagina-quiz");
-    irQuiz.classList.remove("oculto");
-
-    //const promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${idQuizz}`);
-    
-    //promise.then(chamarQuiz);
-
-function chamarQuiz(response){
-
-    let perguntas = response.data.questions;
-
-    let questoes = response.data.questions.answers;
-
-    document.querySelector(".pagina-quiz").innerHTML+=`<header class="topo-quiz"> ;
-    <img src="${response.data.image}" alt="">
-    <p>${response.data.title}</p></header>
-    `;
-
-    for(let i=0; i < perguntas.length; i++){
-        document.querySelector(".pagina-quiz").innerHTML += `<div class="respostas-quiz">
-        <div class="titulo-pergunta" style="background-color:${perguntas[i].color}">
-            <h4>${perguntas[i].title}</h4>
-        </div>
-        </div>
-        <ul class="perguntas"></ul>
-       `;
-      
-       }
-    }   
-
-    */
 
 function criarQuizz() {
     const criar = document.querySelector(".conteudo");
